@@ -1,0 +1,10 @@
+ENGINEERING MEETING – MONDAY 10/14
+
+Attendees: Alex, Priya, Sam, Jordan
+
+- Discussion about moving from AWS EC2 to GCP for cost savings.
+- Priya to research GCP migration tools.
+- Alex mentioned latency issues with current monitoring setup.
+- Sam will investigate Datadog alert delays.
+- Jordan requested documentation updates for new onboarding flow.
+- Need to finalize release schedule by end of week.
