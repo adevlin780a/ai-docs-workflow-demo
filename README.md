@@ -1,6 +1,6 @@
 
 
-# 🧩 summarize_docs.py — AI-Powered Documentation Summarizer
+# AI-Powered Documentation Summarizer
 
 > A lightweight Python script that uses an AI model to transform raw text (such as bug reports, meeting notes, or changelogs) into clear, structured documentation drafts.
 
@@ -32,8 +32,8 @@ Raw Text → AI Summarization → Markdown Output → Human Review
 ## Getting Started
 
 ### 1. Clone the Repository
-```bash
-git clone https://github.com/<your-username>/ai-docs-workflow-demo.git```
+bash
+git clone https://github.com/<your-username>/ai-docs-workflow-demo.git
 ```cd ai-docs-workflow-demo```
 
 2. Install Requirements
@@ -47,19 +47,19 @@ Otherwise, the script runs as-is using a simulated summary output.
 
 You can edit the following variables in summarize_docs.py:
 
-Variable	Description	Default
-MODEL_NAME	Model to use for summarization	"gpt-4-turbo"
-SUMMARY_PROMPT	Prompt template for AI writer	Predefined
-OUTPUT_DIR	Directory for output files	"ai_outputs"
+* `Variable`	Description	Default
+* `MODEL_NAME`	Model to use for summarization	"gpt-4-turbo"
+* `SUMMARY_PROMPT`	Prompt template for AI writer	Predefined
+* `OUTPUT_DIR`	Directory for output files	"ai_outputs"
 
 If using the OpenAI API:
-export OPENAI_API_KEY="your_api_key_here"
+```export OPENAI_API_KEY="your_api_key_here"```
 
 Example Usage 
-python scripts/summarize_docs.py data/bug_reports_raw.txt
+`python scripts/summarize_docs.py data/bug_reports_raw.txt`
 
 Example Output
-✅ Summary saved to: ai_outputs/bug_reports_raw_summary_20251023-1030.md
+✅ Summary saved to: `ai_outputs/bug_reports_raw_summary_20251023-1030.md`
 
 🗃️ Example Input / Output
 
@@ -68,7 +68,7 @@ Title: PDF Export Fails
 Description: Large reports (20+ pages) cannot be exported to PDF.
 Impact: Users cannot share analytics reports.
 
-Output: /ai_outputs/bug_reports_raw_summary_20251023-1030.md
+Output: `/ai_outputs/bug_reports_raw_summary_20251023-1030.md`
 
 ### 3. AI Summary
 
@@ -98,12 +98,12 @@ MIT License — Free to reuse, adapt, or extend for educational or professional 
 
 ### Author
 
-{{Andrew Devlin}}
+Andrew Devlin
 Technical Writer • AI Workflow Designer • Knowledge Systems Advocate
 
-[LinkedIn]()
+[LinkedIn](www.linkedin.com/in/andrew-d780)
 
-[GitHub Portfolio]()
+[GitHub Portfolio](https://adevlin780a.github.io/portfolio/)
 
 “AI doesn’t replace technical writers — it gives them superpowers.”
 — AI-Assisted Documentation Workflow Demo
