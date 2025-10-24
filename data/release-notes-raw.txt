@@ -1,1 +1,51 @@
-.
+# Raw Meeting Notes — Product & Engineering Sync  
+**Date:** October 15, 2025  
+**Attendees:** Alex (PM), Priya (Frontend), Jordan (Backend), Sam (QA), Morgan (Tech Writer)  
+**Duration:** ~50 minutes  
+
+---
+
+## Agenda
+- Review sprint progress  
+- Discuss open bugs and blockers  
+- Plan for upcoming release  
+- Docs + AI summarization update  
+
+---
+
+## Notes (unedited)
+
+Alex: Kicking off with sprint review — backend mostly on track but analytics API performance still lagging.  
+Jordan: yeah, `/analytics/summary` endpoint slow again. DB queries not optimized. Maybe use caching or pre-aggregated tables.  
+Sam: QA noticed 500 errors during load test. Could be tied to the same endpoint.  
+Jordan: I’ll look into DB indexing + caching layer (Redis?).  
+
+Priya: Frontend side: dashboard redesign 80% done, still needs color tweaks + dark mode support. Accessibility team flagged low contrast on some charts.  
+Alex: Let’s make sure WCAG compliance is ready for release.  
+Priya: OK, will finalize by next sprint.  
+
+Morgan: Docs side — still a big backlog. Product updates not properly reflected in Confluence.  
+Alex: Can AI help with that?  
+Morgan: Yeah, I’ve been testing a script to summarize bug reports + meeting notes. It’s producing readable drafts, but still needs review for tone/accuracy.  
+Sam: That would save a lot of time, especially for release notes.  
+Alex: Cool, we’ll pilot it for this release cycle. Morgan to refine the process.  
+
+---
+
+## Discussion: Bug Priorities
+- 82 open issues in Jira → 30 minor, 20 UI-related, rest functional.  
+- Decision: focus on performance bugs + API reliability first.  
+- QA to triage by severity, not creation date.  
+- Sam: “Can we mark repetitive UI bugs as backlog-only unless customer-facing?”  
+- Alex: Agreed. Document criteria in QA Confluence space.  
+
+---
+
+## Docs + Knowledge Base
+Morgan: We need consistent format for release notes. Some teams write paragraphs, others bullet points.  
+Alex: Standardize using the AI template outputs — concise summary, then sections for fixes, improvements, etc.  
+Morgan: Done. I’ll update `summarize_docs.py` to include those section headers automatically.  
+
+---
+
+##

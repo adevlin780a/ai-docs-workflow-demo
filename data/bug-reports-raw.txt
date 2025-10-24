@@ -1,178 +1,87 @@
-# 🧠 AI-Assisted Documentation Workflow Demo
-
-> A practical demonstration of how artificial intelligence can support technical writers and documentation teams by transforming unstructured text — such as bug reports, meeting notes, and product updates — into clear, concise documentation.
+# Raw Bug Reports — October 2025
 
 ---
 
-## 🎯 Project Overview
+## [JIRA-1421] App Crashes on File Upload
+User: *@rmarquez*  
+Date: Oct 10, 2025  
 
-**Goal:**  
-Showcase how AI can streamline the documentation process by generating first-draft summaries that technical writers can refine for publication.
-
-**Conceptual Workflow:**  
-Raw Input → AI Summarization → Human Review → Final Documentation
-
-yaml
-Copy code
-
-This project demonstrates an AI-enhanced workflow for documentation teams, complete with sample data, AI outputs, prompts, and explanations.
+When uploading a CSV file around 500MB, the web app completely freezes. CPU usage spikes to 100% and browser tab crashes after about 20 seconds. Happens in both Chrome and Firefox. Smaller files seem fine.  
+Error logs show “MemoryError: process out of memory.”  
+Backend logs mention chunking error in `/upload_manager.py` line 114.
 
 ---
 
-## 🗂️ Repository Structure
+## [JIRA-1427] Dashboard Doesn’t Refresh Correctly
+User: *@awei*  
+Date: Oct 13, 2025  
 
-ai-docs-workflow-demo/
-├── README.md
-├── workflow-overview.png
-├── /data/
-│ ├── bug_reports_raw.txt
-│ ├── meeting_notes_raw.txt
-│ └── release_notes_raw.txt
-├── /ai_outputs/
-│ ├── summarized_bug_reports.md
-│ ├── meeting_notes_summary.md
-│ └── release_notes_v1.md
-├── /scripts/
-│ ├── summarize_docs.py
-│ └── prompt_examples.md
-└── /docs/
-├── workflow_explained.md
-├── lessons_learned.md
-└── future_improvements.md
-
-markdown
-Copy code
+After completing a task, dashboard still shows old progress until the page is hard-refreshed (Ctrl+Shift+R). It’s confusing for users because tasks look incomplete.  
+The API call returns the right data, so probably a frontend cache or state update issue.  
+Jordan thinks it’s related to missing timestamp invalidation.
 
 ---
 
-## ⚙️ How It Works
+## [JIRA-1433] Markdown Rendering Broken
+User: *@teamdocs*  
+Date: Oct 14, 2025  
 
-1. **Collect Raw Inputs**  
-   Gather bug reports, meeting notes, or release notes from project systems.
 
-2. **Run AI Summarization**  
-   Use an AI model (e.g., GPT-4-Turbo or Claude) to summarize and structure the text into reader-friendly documentation.
+Shows up as raw text instead of a formatted table.  
+Started happening after last frontend build (v2.8.1). Possibly related to markdown-it update?
 
-3. **Human Review**  
-   A technical writer reviews for tone, accuracy, and style consistency.
+---
 
-4. **Publish or Archive**  
-   The reviewed output becomes internal documentation, release notes, or a knowledge-base entry.
+## [JIRA-1438] Scheduled Reports Running Early
+User: *@sroberts*  
+Date: Oct 15, 2025  
 
-**Example command (optional):**
-```bash
-python scripts/summarize_docs.py data/bug_reports_raw.txt
-💬 Prompt Examples
-Below are example prompts for different technical writing scenarios.
-You can adapt them for ChatGPT, Claude, Gemini, or other large language models.
+Daily reports are being sent one hour earlier than scheduled for EMEA users.  
+Config says “8:00 AM local time” but logs show execution at 7:00.  
+Looks like UTC offset issue — reports triggered by server time instead of user timezone setting.  
+Impact: All customer reports going out at incorrect times.
 
-🧾 Bug Reports → Release Notes
-pgsql
-Copy code
-You are a technical writer. Summarize the following bug reports into concise, customer-facing release notes. 
-Include what was fixed or improved, why it matters, and the user impact.
-📋 Meeting Notes → Action Summary
-pgsql
-Copy code
-Convert these meeting notes into a structured summary for the engineering knowledge base.
-Include key decisions, blockers, and next steps in markdown format.
-📘 Raw Text → Knowledge Article
-csharp
-Copy code
-Rewrite this unstructured text into a professional knowledge-base article with headings, summaries, and bullet points.
-Use a neutral, clear tone suitable for internal documentation.
-🧩 Product Updates → Changelog
-sql
-Copy code
-Create a changelog entry summarizing new features, enhancements, and bug fixes.
-Organize the output under headers: New, Improved, Fixed.
-🗃️ Slack Threads → Team Updates
-pgsql
-Copy code
-Summarize this Slack thread into a 2–3 paragraph internal update.
-Focus on what was discussed, what was decided, and any next actions.
-🧠 Technical Docs → Executive Summary
-pgsql
-Copy code
-Summarize the following technical document into a concise executive summary (3–4 bullet points).
-Use non-technical language for leadership or stakeholders.
-📊 Example Outputs
-Input Type	Before (Raw)	After (AI Summary)
-Bug Reports	Unstructured Jira exports	Clean, readable release notes
-Meeting Notes	Long transcript	1-page executive summary
-Product Updates	Slack messages	Organized changelog entry
+---
 
-See /ai_outputs/ for full examples.
+## [JIRA-1440] API 500 Errors on Bulk Upload
+User: *@qateam*  
+Date: Oct 17, 2025  
 
-🗺️ Workflow Diagram
+During regression testing, bulk upload endpoint returned intermittent 500 errors.  
+Stack trace points to missing exception handling in `bulk_upload_service.py`.  
+Also observed that error messages are inconsistent — sometimes empty response body.  
+Seems related to memory leak fix merged last week.
 
-(Created using draw.io or Mermaid)
+---
 
-📘 Documentation
-The /docs/ folder contains supporting documentation:
+## [JIRA-1442] Minor UI Bugs
+User: *@priyaa*  
+Date: Oct 18, 2025  
 
-workflow_explained.md
-Explains the end-to-end design, including:
+- Text overflow in dashboard widgets when window < 1200px wide  
+- Hover state missing for “View Details” button  
+- Some colors don’t meet accessibility contrast ratio  
+Nothing critical but should be cleaned up for the next release.
 
-Why AI-assisted writing is valuable
+---
 
-Prompt design principles
+## [JIRA-1445] Authentication Timeout Errors
+User: *@qa_automation*  
+Date: Oct 20, 2025  
 
-Quality assurance through human review
+Login requests occasionally time out after 30s during automated testing.  
+May be related to new session validation logic.  
+Needs investigation — could be token refresh timing issue.
 
-lessons_learned.md
-Captures insights such as:
+---
 
-What makes prompts clear and effective
+## [JIRA-1449] Search Results Delayed
+User: *@support_team*  
+Date: Oct 22, 2025  
 
-Common AI summarization pitfalls
+Customers reporting slow search queries in analytics view.  
+Response times up from 200ms to 1.5s.  
+Possibly due to index refresh frequency or database load balancing after migration.  
+Jordan suggested caching results temporarily until fix is deployed.
 
-How human review adds value
-
-future_improvements.md
-Outlines potential upgrades:
-
-Integration with documentation tools (Confluence, Notion)
-
-Auto-tagging or metadata generation
-
-Multi-language summarization
-
-💡 Key Insights
-AI can dramatically reduce the time required to produce documentation drafts.
-
-Clear prompts and examples lead to much higher-quality outputs.
-
-Human review remains essential for tone, accuracy, and audience alignment.
-
-This workflow bridges technical writing and AI operations — a growing professional niche.
-
-🔮 Future Enhancements
-Integrate with Confluence or Notion APIs for automated publishing
-
-Add a lightweight web interface for drag-and-drop file summarization
-
-Build a “prompt library” for different writing styles and audiences
-
-Experiment with style-transfer prompts to match brand voice
-
-🧮 Tools Used
-OpenAI GPT-4-Turbo (for AI summarization)
-
-Python 3.11 (for basic automation)
-
-Markdown + Mermaid + draw.io (for docs and visuals)
-
-GitHub Pages (for project hosting)
-
-🪪 License
-MIT License — Free to reuse, fork, and adapt for learning or demonstration purposes.
-
-✍️ Author
-{{Your Name}}
-Technical Writer • Knowledge Management • AI Workflow Designer
-
-💼 LinkedIn
-
-🌐 Portfolio
 

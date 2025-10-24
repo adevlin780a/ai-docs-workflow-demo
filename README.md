@@ -59,9 +59,9 @@ Example Usage
 `python scripts/summarize_docs.py data/bug_reports_raw.txt`
 
 Example Output
-✅ Summary saved to: `ai_outputs/bug_reports_raw_summary_20251023-1030.md`
+Summary saved to: `ai_outputs/bug_reports_raw_summary_20251023-1030.md`
 
-🗃️ Example Input / Output
+Example Input / Output
 
 Input: `/data/bug_reports_raw.txt`
 Title: PDF Export Fails

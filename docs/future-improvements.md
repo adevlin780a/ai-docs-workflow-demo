@@ -1,4 +1,4 @@
-# 🔮 Future Improvements
+# Future Improvements
 
 ### Automation
 Integrate this workflow with APIs for Confluence or Notion so summaries are automatically published or tagged.

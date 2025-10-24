@@ -1,4 +1,4 @@
-# 📘 Lessons Learned
+# Lessons Learned
 
 ### Prompt Clarity Matters
 Short, vague prompts produce inconsistent results. Detailed, role-based prompts yield far better summaries.
